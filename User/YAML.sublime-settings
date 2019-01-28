@@ -1,0 +1,13 @@
+// These settings override both User and Default settings for the YAML syntax
+{
+	"name": "Logfile Color Scheme",
+	"rules" : [
+
+		{
+
+			"name":"heading_log",
+			"scope":"markup.heading",
+			"foreground": "#550000"
+		}
+	]
+}

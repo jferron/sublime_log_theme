@@ -1,0 +1,51 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: My Plain Text
+file_extensions: [txt]
+scope: text.plain.txt
+contexts:
+ main:
+   # Line starting in all caps
+   - match: '^\#\[.*'
+     push:
+       - meta_scope: markup.heading
+       - match: '$\n?'
+         pop: true
+  # Line starting with //
+   - match: '^\/\/.*'
+     push:
+       - meta_scope: meta.comment
+       - match: '$\n?'
+         pop: true
+  # Line starting with tab+//
+   - match: '^\t\/\/.*'
+     push:
+       - meta_scope: meta.comment
+       - match: '$\n?'
+         pop: true
+  # Line starting with tab
+   - match: '^\t.*'
+     push:
+       - meta_scope: meta.done
+       - match: '$\n?'
+         pop: true
+  # Line starting with *r
+   - match: '^\*r.*'
+     push:
+       - meta_scope: meta.reported
+       - match: '$\n?'
+         pop: true
+  # Line starting with *
+   - match: '^\*\t.*'
+     push:
+       - meta_scope: meta.vulnerability
+       - match: '$\n?'
+         pop: true
+  
+   # Words surrounded by *
+   - match: '(\*)(\w+)(\*)'
+     captures:
+       1: punctuation.definition.bold.begin
+       2: markup.bold
+       3: punctuation.definition.bold.end
